@@ -1,0 +1,61 @@
+<html><head>
+	<title>Burrito Calculator</title>
+	<meta charset="utf-8">
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="shortcut icon" href="images/burrito.ico">
+    <script type="text/javascript" src="scripts/jquery-1.11.1.js"></script>
+    <script type="text/javascript" src="scripts/calculator.js"></script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <section>
+            <form action="" id = "form" method="POST">
+                <p>A <input type="text" id="object" placeholder = "private college education"> costs <input type="text" id = "price" placeholder = "$50,000"></p>
+                <p><button type = "submit">How many burritos is that?</button></p>
+            </form>
+        </section>
+        <section>
+            <div class="result">
+            </div>
+        </section>
+    </div>
+</body>
+</html>
+
+<script>
+
+    $("form").submit(function(){
+        var obj = document.getElementById("object").value;
+        var price = document.getElementById("price").value;
+        var burrito_price = 5.00;
+        var burrito_weight = 1.476;
+        price = price.replace(/[^\w\s]/gi, '');
+        var num_burritos = price/burrito_price
+        delete window.alert;
+        var newDiv = document.createElement('div');
+
+        var section = document.getElementById("result");
+        var result_string = ('A ' + obj + ' costs the same as ' + num_burritos + ' burritos');
+        if(num_burritos > 365){
+            var result_string1 = ("That's one burrito every day for " + Number(num_burritos/365).toFixed(0) + " years.");
+        }
+        else if(num_burritos > 30){
+            var result_string1 = ("That's one burrito every day for " + Number(num_burritos/30).toFixed(0) + " months.");
+        }
+        else if(num_burritos > 7){
+            var result_string1 = ("That's one burrito every day for " + Number(num_burritos/7).toFixed(4) + " weeks.");
+        }
+        else{
+            var result_string1 = "That's really not that many burritos... up the stakes please."
+        }
+        var result_string2 = "That's " + Number(num_burritos * burrito_weight).toFixed(0) + " pounds of burrito.";
+        $(".result").append('<p>' + result_string + '</p>');
+        $(".result").append('<p>' + result_string1 + '</p>');
+        $(".result").append('<p>' + result_string2 + '</p>');
+        return false;
+    });
+
+    
+</script>
